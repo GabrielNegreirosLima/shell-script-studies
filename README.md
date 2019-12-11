@@ -48,7 +48,7 @@ The `[something]` means that the `something` is optional.
     - `-f`: force deletion;
     - `-r`: recursive deletion;
     - `-i`: interative deletion, asking for confirmation one by one;
-  - `touch [args] [file]`: creates a empty file, or update the timestamp of a existing file;
+  - `touch [args] [file]`: creates a empty file, or update the timestamp of a existing file;;
   - `cat [path]`: prints file content;
   - `echo "[message]"`: prints the message to the standard output;
   - `cp [args] [source] [destination]`: copy a file/directory from a source to a destination;
@@ -59,3 +59,18 @@ The `[something]` means that the `something` is optional.
   - `mv [source] [destination]`: move a file/dir from a source to a destination. If moving from some path to the same path with other file name it's  a rename;
     - `-i`: iterative copy;
     - `-v`: verbose mode, printing all files copied;
+
+## Running scripts and useful Commands
+  - `bash -x script.sh`: Runs `script.sh` step-by-step show the command and it's output for debugging purposes
+
+## Output redirectors 
+  The words between the `{}` means to choose one of the words as options for the command.
+  - `{command,script} > file`: Standart Output - STDOUT. Create or overwrite the file with the command/script output;
+  - `{command,script} >> file`: Sets STDOUT. Create or append the file with the command/script output;
+  - `{command, script} 2> file`: Sets STDERR. Create or overwrite the file with the command/script error output;
+  - `> /dev/null 2>&1`: Sets the STDOUT to the `/dev/null` and the STDERR to the STDOUT defined (the /dev/null).
+  - `1> /dev/null 2>/dev/null`
+  - `|`
+  - `<<<`
+  - `EOF`
+  - `tee`

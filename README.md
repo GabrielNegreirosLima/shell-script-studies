@@ -61,16 +61,33 @@ The `[something]` means that the `something` is optional.
     - `-v`: verbose mode, printing all files copied;
 
 ## Running scripts and useful Commands
-  - `bash -x script.sh`: Runs `script.sh` step-by-step show the command and it's output for debugging purposes
+  - `bash -x script.sh`: Runs `script.sh` step-by-step showing the command and it's output for debugging purposes
 
 ## Output redirectors 
   The words between the `{}` means to choose one of the words as options for the command.
   - `{command,script} > file`: Standart Output - STDOUT. Create or overwrite the file with the command/script output;
   - `{command,script} >> file`: Sets STDOUT. Create or append the file with the command/script output;
   - `{command, script} 2> file`: Sets STDERR. Create or overwrite the file with the command/script error output;
-  - `> /dev/null 2>&1`: Sets the STDOUT to the `/dev/null` and the STDERR to the STDOUT defined (the /dev/null).
-  - `1> /dev/null 2>/dev/null`
-  - `|`
-  - `<<<`
-  - `EOF`
-  - `tee`
+  - `> /dev/null 2>&1`: Sets the STDOUT to the `/dev/null` (the standard device for sanitize output in UNIX) and the STDERR to the STDOUT defined (the /dev/null);
+  - `{command,script} 1> /dev/null 2>/dev/null`: 
+  - `command1 | command2`: Redirects the first command output to the next command;
+  - `command1 <<< {command2, variable}`: Receives a entry (command, output, variable) as command1 entry. It eliminates the need of `echo` and `cat` commands;
+    - Example: `COLUMN_HOSTNAME=$(cut -d, -f1 <<< $LINEVARIABLE)`
+  - `EOF`: End Of File. It ends a file or input for command. Can be used for aggregate commands for some other as the example. Can used to write a config file as the example2 or edit some other file, using ``;
+    - Example: ``` 
+               $ ssh localhost << EOF
+               > ls -l
+               > echo $PATH
+	       > EOF
+               ```
+    - Example2: ```
+		$ cat << EOF > file.conf
+		> someconfiguration
+		> otherconfigurations
+		> EOF
+                ``` 
+  - `command | tee file`: Copy shell command output for the file, keeping the output for the shell;
+
+## Regex - Regular Expressions
+  - `*`: Match with anything in the current expression, from 0 to any chars;
+  - `?`: Match with any unique character in the current expression;

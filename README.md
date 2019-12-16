@@ -74,14 +74,15 @@ The `[something]` means that the `something` is optional.
   - `command1 <<< {command2, variable}`: Receives a entry (command, output, variable) as command1 entry. It eliminates the need of `echo` and `cat` commands;
     - Example: `COLUMN_HOSTNAME=$(cut -d, -f1 <<< $LINEVARIABLE)`
   - `EOF`: End Of File. It ends a file or input for command. Can be used for aggregate commands for some other as the example. Can used to write a config file as the example2 or edit some other file, using ``;
-    - Example: ``` 
+    - Example: ```bash 
                $ ssh localhost << EOF
                > ls -l
                > echo $PATH
 	       > EOF
                ```
-    - Example2: ```
+    - Example2: ```bash
 		$ cat << EOF > file.conf
+		
 		> someconfiguration
 		> otherconfigurations
 		> EOF

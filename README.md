@@ -91,5 +91,31 @@ The `[something]` means that the `something` is optional.
   - `command | tee file`: Copy shell command output for the file, keeping the output for the shell;
 
 ## Regex - Regular Expressions
+  _Curiosity_: There is a env var called LC_ALL in some UNIX systems that stands for [_locale_](https://wiki.archlinux.org/index.php/Locale). These LC_* prefixes sets the local values for locale in the UNIX current session, so with LC_ALL you can set your standart output for any language that you want. Other of these variables is LC_COLLATE that sets the locale value for collate in the session - that means you can change the Lower Case and Upper Case settings, set bit-wise sorting as the below example, and some other stuff. At last but not least, to change these to the default value, use the letter `C` as `LC_ALL`. Examples from [Unix Stack Exchange](https://unix.stackexchange.com/questions/87745/what-does-lc-all-c-do)
+
+	```
+	$ LC_ALL=es_ES man
+	¿Qué página de manual desea?
+
+	$ LC_ALL=C man
+	What manual page do you want?
+
+	$ LC_ALL=en_US sort <<< $'a\nb\nA\nB'
+	a
+	A
+	b
+	B
+
+	$ LC_ALL=C sort <<< $'a\nb\nA\nB'
+	A
+	B
+	a
+	b
+	```
   - `*`: Match with anything in the current expression, from 0 to any chars;
   - `?`: Match with any unique character in the current expression;
+  - `[0123456789]`: Match with any character that is within the interval - from 0 to 9;
+  - `[0-9]: Same as above with shorter representation;
+  - `[012]?`: Example that matches a string of two characters beggining with 0 or 1, or 2 or 3 and end with any character;
+  - `[0-46-9a-eg-z]`: Example that matches from 0 to 9 excepting 5 or all letters excepting f;
+  - ``
